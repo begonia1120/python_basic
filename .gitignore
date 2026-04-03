@@ -1,0 +1,53 @@
+# Python virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+eggs/
+parts/
+sdist/
+wheels/
+share/python-wheels/
+pip-wheel-metadata/
+
+# Unit test / coverage reports
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+*.cover
+coverage.xml
+*.mo
+
+# Type checking / linting caches
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+# Jupyter Notebook / IPython
+.ipynb_checkpoints/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Logs / temp files
+*.log
+*.tmp
+

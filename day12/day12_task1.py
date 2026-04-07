@@ -11,8 +11,6 @@ def qytang_multicmd(host, username, password, cmd_list, enable='', wait_time=2, 
     while chan.recv_ready():
         chan.recv(4096)
     
-    output_dict = {}
-
     for cmd in cmd_list:
         chan.send(cmd + '\n')
         time.sleep(wait_time)

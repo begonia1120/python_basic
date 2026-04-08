@@ -11,11 +11,11 @@ class Interface:
         self.mask = ''          # 子网掩码，默认空字符串
         self.description = ''   # 接口描述，默认空字符串
         self.status = False     # True=no shutdown, False=shutdown，默认关闭
-
+ 
     def __str__(self):
         """格式化打印接口信息"""
-        status_str = 'no shoutdown' if self.staus else 'shutdown'  # 如果 self.status 为 True 则为 'no shutdown'，否则为 'shutdown'
-        device_ip = self.device.ip if self.devic else '未綁定設備'  # 如果 self.device 存在则取 self.device.ip，否则显示 '未绑定设备'
+        status_str = 'no shoutdown' if self.status else 'shutdown'  # 如果 self.status 为 True 则为 'no shutdown'，否则为 'shutdown'
+        device_ip = self.device.ip if self.device else '未綁定設備'  # 如果 self.device 存在则取 self.device.ip，否则显示 '未绑定设备'
         lines = [
             f"接口名称    : {self.name}",
             f"所属设备    : {device_ip}",
@@ -82,6 +82,7 @@ if __name__ == '__main__':
     loop13.description = 'Created_by_Python'
     loop13.status = True
     r1.add_interface(loop13)
+    print(loop13)
 
     #創建第二個接口並設置參數
     gi2 = Interface('GigabitEthernet2')

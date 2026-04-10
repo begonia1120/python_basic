@@ -48,8 +48,9 @@ class NetworkDevice:
         for iface in self.interfaces:
             cmds.append(f'interface {iface.name}')                                          # 追加: interface {接口名}
             cmds.append(f'ip address {iface.ip_address} {iface.mask}')                      # 追加: ip address {IP} {掩码}
-            cmds.append(f'description {iface.description}') if iface.description else None  # 如果有 description，追加: description {描述}
-            cmds.append(f'no shutdown' if iface.status else 'shutdown')                     # 根据 status 追加 'no shutdown' 或 'shutdown'
+            if iface.description:
+                cmds.append(f'description {iface.description}')                             # 如果有 description，追加: description {描述}
+            cmds.append('no shutdown' if iface.status else 'shutdown')                     # 根据 status 追加 'no shutdown' 或 'shutdown'
         cmds.append('end')
 
         iface_names = ', '.join(iface.name for iface in self.interfaces)
@@ -92,4 +93,5 @@ if __name__ == '__main__':
     gi2.status = True
     r1.add_interface(gi2)
     print(r1)
+    
     r1.apply()

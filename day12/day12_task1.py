@@ -8,18 +8,28 @@ def qytang_multicmd(host, username, password, cmd_list, enable='', wait_time=2, 
                 look_for_keys=False, allow_agent=False)
     chan = ssh.invoke_shell()
     time.sleep(1)
-    while chan.recv_ready():
+    #while chan.recv_ready():
+    chan.recv(4096)
+
+    if enable:
+        chan.send(b'enable\n')
+        time.sleep(1)
+        chan.send(f'{enable}\n'.encode())
+        time.sleep(1)
         chan.recv(4096)
-    
+
+    all_output = ''
     for cmd in cmd_list:
-        chan.send(cmd + '\n')
+        chan.send(f'{cmd}\n'.encode())
         time.sleep(wait_time)
+        output = chan.recv(65535).decode()
+        all_output += output
+        
         if verbose:
-            output = ''
-            while chan.recv_ready():
-                output += chan.recv(2048).decode()
-            print(f'\n--- {cmd} ---\n{output}')
+            print(f'--- {cmd} ---')
+            print(output)
     ssh.close()
+    return all_output
 
 if __name__ == '__main__':
     cmd_list = [

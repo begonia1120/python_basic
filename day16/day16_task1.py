@@ -1,7 +1,7 @@
 import sys, os, hashlib, time, datetime, re
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from day12.day12_task1 import qytang_multicmd
+from day12.day12_task01_multicmd import qytang_multicmd
 
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.orm import declarative_base, sessionmaker
@@ -43,10 +43,10 @@ def save_config(host, config, config_hash):
 def get_latest_two_hashes(host):
     with Session() as session:
         results = (session.query(RouterConfig)
-        .filter(RouterConfig.router_ip == host)
-        .order_by(RouterConfig.id.desc())
-        .limit(2)
-        .all())
+                  .filter(RouterConfig.router_ip == host)
+                  .order_by(RouterConfig.id.desc())
+                  .limit(2)
+                  .all())
     return results
 
 if __name__ == '__main__':
@@ -64,7 +64,7 @@ if __name__ == '__main__':
             if len(records) < 2:
                 print(f'本次採集的HASH:{config_hash}')
             elif records[0].config_hash == records[1].config_hash:
-                print(f'本次採集的HASH:{config_hash}')
+                print(f'本次採集的HASH:{records[0].config_hash}')
             else:
                 print(f'==========配置發生變化==========')
                 print(f'{"  THE MOST RECENT HASH":<25}{records[0].config_hash}')

@@ -8,5 +8,11 @@
 #             print(cmds)
 #             break
 
-import sqlite3
-print(sqlite3.sqlite_version)
+# import sqlite3
+# print(sqlite3.sqlite_version)
+
+import pickle
+
+test_data = "A" * 600
+serialized = pickle.dumps(test_data)
+print(f"pickle 後的大小：{len(serialized)} bytes")

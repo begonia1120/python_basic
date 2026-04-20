@@ -1,8 +1,7 @@
-import logging,sys,os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import logging
 
 logging.getLogger('scapy.runtime').setLevel(logging.ERROR)
-from scapy.all import *
+from scapy.all import Ether,ARP,sendp
 from protocol.tools.get_mac_netifaces import get_mac_address
 from protocol.tools.scapy_iface import scapy_iface
 

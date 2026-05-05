@@ -3,7 +3,6 @@ from sqlalchemy.orm import sessionmaker
 from day4_1_create_db import RouterMonitor, engine
 from tools.day4_bokeh_line import bokeh_line
 
-
 def show_cpu_mem_from_db(hours=1):
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -47,7 +46,6 @@ def show_cpu_mem_from_db(hours=1):
         bokeh_line(mem_lines, title='內存利用率趨勢')
     else:
         print(f'[!] 內存無資料')
-
 
 if __name__ == '__main__':
     show_cpu_mem_from_db()

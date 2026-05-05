@@ -22,7 +22,7 @@ def bokeh_bar(time_list, value_list, line_name,
     })
 
     p = figure(height=400, width=700, title=f"{title} - {line_name}",
-               x_axis_type="datetime", x_axis_label='时间', y_axis_label=y_label,
+               x_axis_type="datetime", x_axis_label='時間', y_axis_label=y_label,
                y_range=(0, 100))
 
     p.vbar(x='time', top='value', source=source, width=delta_ms,
@@ -40,3 +40,11 @@ def bokeh_bar(time_list, value_list, line_name,
     output_file(output_filename, title=title)
     save(p)
     print(f"[*] Bokeh 柱狀圖已生成: {output_filename}")
+
+if __name__ == '__main__':
+    from datetime import datetime, timedelta
+    from random import randint
+    now = datetime.now()
+    time_list = [now - timedelta(minutes=i) for i in range(10, 0, -1)]
+    value_list = [randint(10, 80) for _ in range(10)]
+    bokeh_bar(time_list, value_list, 'R1 CPU', title='CPU利用率柱狀圖測試')

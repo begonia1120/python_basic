@@ -1,6 +1,10 @@
 import sys,os,asyncio
+from pathlib import Path
+base_dir = Path(__file__).resolve().parent.parent
+if str(base_dir) not in sys.path:
+    sys.path.insert(0, str(base_dir))
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from code.day4_1_create_db import RouterMonitor, engine
 from code.tools.day4_get import snmpv2_get

@@ -2,9 +2,15 @@ from sqlalchemy.orm.session import Session
 import datetime
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.orm import declarative_base, sessionmaker
+from pathlib import Path
 
-engine = create_engine('sqlite:////python_basic/protocol/day4/code/sqlalchemy_syslog_sqlite3.db?check_same_thread=False',
-                       echo=False)
+base_dir = Path(__file__).resolve().parent
+db_path = base_dir / "sqlalchemy_syslog_sqlite3.db"
+engine = create_engine(f'sqlite:///{db_path}?check_same_thread=False',
+                        echo=False)
+
+# # engine = create_engine('sqlite:////python_basic/protocol/day4/code/sqlalchemy_syslog_sqlite3.db?check_same_thread=False',
+#                        echo=False)
 
 Base = declarative_base()
 Session = sessionmaker(bind=engine)

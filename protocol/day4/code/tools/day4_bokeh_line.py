@@ -19,7 +19,7 @@ def bokeh_line(lines_data, title='利用率趨勢', y_label='利用率 (%)', sav
     :param save_name: 输出文件路径, None 则自动保存到 outputs/{title}.html
     """
     p = figure(height=400, width=700, title=title,
-               x_axis_type="datetime", x_axis_label='时间', y_axis_label=y_label,
+               x_axis_type="datetime", x_axis_label='時間', y_axis_label=y_label,
                y_range=(0, 100))
 
     for i, (time_list, value_list, line_name) in enumerate(lines_data):
@@ -50,3 +50,15 @@ def bokeh_line(lines_data, title='利用率趨勢', y_label='利用率 (%)', sav
     output_file(output_filename, title=title)
     save(p)
     print(f"[*] Bokeh 折線圖已生成: {output_filename}")
+
+
+if __name__ == '__main__':
+    from datetime import datetime, timedelta
+    from random import randint
+    now = datetime.now()
+    times = [now -timedelta(minutes=i) for i in range(10, 0, -1)]
+    bokeh_line(
+        [[times, [randint(10, 80) for _ in range(10)], 'R1 CPU'],
+         [times, [randint(10, 80) for _ in range(10)], 'R2 CPU']],
+         title='CPU利用率線形圖測試'
+    )

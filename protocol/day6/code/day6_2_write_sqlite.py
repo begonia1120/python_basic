@@ -17,10 +17,6 @@ DEVICES = [
     ('10.10.1.2', 'qytangro'),
 ]
 
-# ifDescr = '1.3.6.1.2.1.2.2.1.2'
-# ifInOctets = '1.3.6.1.2.1.2.2.1.10'
-# ifOutOctets = '1.3.6.1.2.1.2.2.1.16'
-
 def collect_and_write():
     session = Session()
     records = []
